@@ -1,0 +1,7 @@
+django-environ
+flake8
+flake8-absolute-import
+flake8-comprehensions
+flake8-django
+flake8-print
+flake8-quotes
