@@ -1,3 +1,6 @@
+django
+djangorestframework
+psycopg2
 django-environ
 flake8
 flake8-absolute-import
