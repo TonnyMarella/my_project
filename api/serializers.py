@@ -4,7 +4,6 @@ from .models import Task
 
 
 class TaskAdminSerializer(serializers.ModelSerializer):
-    # author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Task
