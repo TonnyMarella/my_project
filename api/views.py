@@ -1,12 +1,8 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly, IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
-import json
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from .models import Task
 from .serializers import TaskAdminSerializer, TaskUserSerializer
-from .permission import IsAdminOrReadOnly
 
 
 class TaskAPIList(generics.ListCreateAPIView):
@@ -30,7 +26,7 @@ class TaskForUserAPIList(generics.ListAPIView):
         return Task.objects.filter(executor=self.request.user.id)
 
 
-class TaskAPIUpdate(generics.RetrieveUpdateAPIView):
+class TaskForUserAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskUserSerializer
     permission_classes = (IsAuthenticated,)
