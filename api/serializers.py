@@ -7,11 +7,11 @@ class TaskAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ['author', 'title', 'exercise', 'executor', 'status']
+        fields = ['author', 'title', 'exercise', 'executor', 'status', 'created_at', 'modified_at']
 
 
 class TaskUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ['author', 'title', 'exercise', 'executor', 'status']
-        read_only_fields = ('title', 'author', 'exercise', 'executor')
+        fields = ['author', 'title', 'exercise', 'executor', 'status', 'created_at', 'modified_at']
+        read_only_fields = ('title', 'author', 'exercise', 'executor', 'created_at', 'modified_at')
