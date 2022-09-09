@@ -1,4 +1,4 @@
-from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAdminUser
 from rest_framework import viewsets
 from rest_framework import mixins
 from api.models import Task
