@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.views.generic import CreateView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from MAIN_APP import settings
 from api.models import Task
 from api.serializers import TaskAdminSerializer, TaskUserSerializer
-from api.forms import RegisterUserForm, LoginUserForm
+from api.forms import RegisterUserForm
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -40,9 +40,11 @@ class TaskUserViewSet(viewsets.ReadOnlyModelViewSet, mixins.UpdateModelMixin):
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'api/registration.html'
-    success_url = reverse_lazy('login')
+
+    def get_success_url(self):
+        return reverse_lazy('login')
 
 
 class LoginUser(LoginView):
-    form_class = LoginUserForm
+    form_class = AuthenticationForm
     template_name = 'api/login.html'
