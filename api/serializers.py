@@ -1,6 +1,5 @@
 from rest_framework import serializers
-
-from .models import Task
+from api.models import Task
 
 
 class TaskAdminSerializer(serializers.ModelSerializer):
