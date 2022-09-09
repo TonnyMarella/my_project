@@ -25,7 +25,7 @@ SPECTACULAR_SETTINGS = {
 
 SWAGGER_URL = env.str('SWAGGER_URL', None)
 
-ALLOWED_HOSTS = ['home-pc', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
