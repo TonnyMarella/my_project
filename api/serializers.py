@@ -11,6 +11,7 @@ class TaskAdminSerializer(serializers.ModelSerializer):
 
 
 class TaskUserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Task
         fields = ['author', 'title', 'exercise', 'executor', 'status', 'created_at', 'modified_at']
