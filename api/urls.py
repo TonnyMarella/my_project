@@ -1,6 +1,6 @@
-from django.urls import path, include
-from api import views
 from rest_framework.routers import SimpleRouter
+
+from api import views
 
 router = SimpleRouter()
 router.register(r'task', views.TaskViewSet, basename='tasks')
