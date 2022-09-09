@@ -6,7 +6,8 @@ from MAIN_APP import settings
 
 class TaskAdminSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
-        send_mail('Your New Task', 'Write program Hello World', settings.EMAIL_HOST_USER, ['temazubkov02@gmail.com'])
+        mail_to = validated_data['executor'].email
+        send_mail('Your New Task', 'Write program Hello World', settings.EMAIL_HOST_USER, [mail_to])
         return Task.objects.create(**validated_data)
 
     class Meta:
@@ -20,6 +21,3 @@ class TaskUserSerializer(serializers.ModelSerializer):
         model = Task
         fields = ['author', 'title', 'exercise', 'executor', 'status', 'created_at', 'modified_at']
         read_only_fields = ('title', 'author', 'exercise', 'executor', 'created_at', 'modified_at')
-
-
-

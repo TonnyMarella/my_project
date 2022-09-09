@@ -9,6 +9,6 @@ def registration_view(request):
     if request.method == 'POST':
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
+            serializer.save()
             return Response(request.data)
         return Response(serializer.errors)
