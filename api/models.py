@@ -16,11 +16,11 @@ class DateTimesABC(models.Model):
 
 class Task(DateTimesABC):
     class StatusTask(models.TextChoices):
-        ACTIVE = 'AC'
-        IN_PROGRESS = 'PG'
-        READY = 'RD'
-        CLOSED = 'CL'
-        OPEN = 'OP'
+        ACTIVE = 'ACTIVE'
+        IN_PROGRESS = 'IN_PROGRESS'
+        READY = 'READY'
+        CLOSED = 'CLOSED'
+        OPEN = 'OPEN'
 
     title = models.CharField(max_length=255)
     exercise = models.CharField(max_length=255)

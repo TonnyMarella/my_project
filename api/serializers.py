@@ -5,7 +5,9 @@ from MAIN_APP import settings
 
 
 class TaskAdminSerializer(serializers.ModelSerializer):
-    send_mail('Your New Task', 'Write program Hello World', settings.EMAIL_HOST_USER, ['temazubkov02@gmail.com'])
+    def create(self, validated_data):
+        send_mail('Your New Task', 'Write program Hello World', settings.EMAIL_HOST_USER, ['temazubkov02@gmail.com'])
+        return Task.objects.create(**validated_data)
 
     class Meta:
         model = Task
