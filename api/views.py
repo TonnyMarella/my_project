@@ -1,12 +1,17 @@
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.views.generic import CreateView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework import viewsets, status
 from rest_framework import mixins
 from django.core.mail import send_mail
 from rest_framework.response import Response
+from django.urls import reverse_lazy
 
 from MAIN_APP import settings
 from api.models import Task
 from api.serializers import TaskAdminSerializer, TaskUserSerializer
+from api.forms import RegisterUserForm, LoginUserForm
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -30,3 +35,14 @@ class TaskUserViewSet(viewsets.ReadOnlyModelViewSet, mixins.UpdateModelMixin):
 
     def get_queryset(self):
         return self.queryset.filter(executor=self.request.user.id)
+
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'api/registration.html'
+    success_url = reverse_lazy('login')
+
+
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = 'api/login.html'

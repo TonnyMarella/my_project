@@ -108,6 +108,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+LOGIN_REDIRECT_URL = '/api/my_task/'
+
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
