@@ -149,7 +149,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-REDIS_HOST = '0.0.0.0'
+REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
