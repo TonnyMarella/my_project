@@ -9,3 +9,6 @@ flake8-django
 flake8-print
 flake8-quotes
 drf-spectacular
+celery
+redis
+eventlet

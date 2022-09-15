@@ -1,13 +1,12 @@
 from rest_framework import serializers
-from django.core.mail import send_mail
 from api.models import Task
-from MAIN_APP import settings
+from api.tasks import send_mail_task
 
 
 class TaskAdminSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         mail_to = validated_data['executor'].email
-        send_mail('Your New Task', 'Write program Hello World', settings.EMAIL_HOST_USER, [mail_to])
+        send_mail_task.delay(mail_to)
         return Task.objects.create(**validated_data)
 
     class Meta:
