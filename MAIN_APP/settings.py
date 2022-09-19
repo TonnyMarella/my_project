@@ -78,10 +78,19 @@ WSGI_APPLICATION = 'MAIN_APP.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# django_project/settings.py
 DATABASES = {
-    'default': env.db('DATABASE_URL'),
+    # 'default': env.db('DATABASE_URL'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env('POSTGRES_NAME'),
+        "USER": env('POSTGRES_USER'),
+        "PASSWORD": env('POSTGRES_PASSWORD'),
+        "HOST": "db",
+        "PORT": 5432,
+    }
 }
-
+# env.db('DATABASE_URL')
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -151,9 +160,9 @@ REST_FRAMEWORK = {
 
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
-CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_URL = REDIS_HOST + ':' + REDIS_PORT
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
-CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_RESULT_BACKEND = REDIS_HOST + ':' + REDIS_PORT
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
