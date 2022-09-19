@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   web:
@@ -19,18 +19,17 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_NAME}
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-#  celery:
-#    build:
-#      context: .
-#    command: celery -A MAIN_APP worker --loglevel INFO
-#    volumes:
-#      - ./project:/usr/src/app
-#    depends_on:
-#      - redis
-#    env_file:
-#      - ./project/.env
-#  redis:
-#    image: redis
-#
+  redis:
+    image: redis:latest
+  celery:
+    build:
+      context: .
+    command: celery -A MAIN_APP worker -P eventlet
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+    env_file:
+      - ./.env
 volumes:
   postgres_data:
