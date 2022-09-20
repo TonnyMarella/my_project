@@ -12,3 +12,4 @@ drf-spectacular
 celery
 redis
 eventlet
+psycopg2-binary
